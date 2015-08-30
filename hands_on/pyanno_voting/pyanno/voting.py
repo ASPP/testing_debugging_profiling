@@ -7,8 +7,6 @@
 
 import numpy as np
 from numpy import log
-from numpy.core import getlimits
-import time
 
 
 #: In annotations arrays, this is the value used to indicate missing values
@@ -77,7 +75,7 @@ def majority_vote(annotations):
             # no valid entries on this row
             vote[i] = MISSING_VALUE
         else:
-            count = np.bincount(annotations[i,valid[i,:]])
+            count = np.bincount(annotations[i, valid[i,:]])
             vote[i] = count.argmax()
 
     return vote

@@ -9,7 +9,7 @@ class TestVoting(unittest.TestCase):
 
     def test_labels_count(self):
         annotations = [
-            [ 1,  2, MV, MV],
+            [1,  2, MV, MV],
             [MV, MV,  3,  3],
             [MV,  1,  3,  1],
             [MV, MV, MV, MV],
