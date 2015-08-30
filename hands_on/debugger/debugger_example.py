@@ -15,6 +15,7 @@ def sum_over_difference(arg1, arg2):
     sum_over_diff = div(arg_sum, arg_diff)
     return sum_over_diff
 
+
 if __name__ == '__main__':
     result = sum_over_difference(12., 12.)
-    print result
+    print(result)
