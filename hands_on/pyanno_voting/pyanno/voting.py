@@ -54,10 +54,12 @@ def majority_vote(annotations):
     """Compute an estimate of the real class by majority vote.
     In case of ties, return the class with smallest number.
     If a row only contains invalid entries, return `MISSING_VALUE`.
+
     Arguments
     ---------
     annotations : array-like object, shape = (n_items, n_annotators)
         annotations[i,j] is the annotation made by annotator j on item i
+
     Return
     ------
     vote : list of length n_items
