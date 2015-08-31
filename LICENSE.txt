@@ -1,0 +1,5 @@
+The material in this repository is release under the
+CC Attribution-Share Alike 3.0 Unported
+license.
+
+Full license text available at http://creativecommons.org/licenses/by-sa/3.0/ .
