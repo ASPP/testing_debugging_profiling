@@ -6,9 +6,6 @@
 """Utility functions."""
 
 import numpy as np
-from numpy import log
-from numpy.core import getlimits
-import time
 
 
 #: In annotations arrays, this is the value used to indicate missing values
