@@ -47,3 +47,79 @@ def test_numpy_equality():
     assert x + y == z
 
 
+from py.test import raises
+
+class SomeException(Exception):
+    pass
+
+
+do_something = do_something_else = lambda : 1
+
+
+def test_raises():
+    with raises(SomeException):
+        do_something()
+        do_something_else()
+
+
+def test_raises2():
+    with raises(ValueError):
+        int('XYZ')
+
+
+def test_lower():
+    # Given
+    string = 'HeLlO wOrld'
+    expected = 'hello world'
+
+    # When
+    output = string.lower()
+
+    # Then
+    assert output == expected
+
+
+def test_lower_empty_string():
+    # Given
+    string = ''
+    expected = ''
+
+    # When
+    output = string.lower()
+
+    # Then
+    assert output == expected
+
+
+def test_lower1():
+    # Given
+    # Each test case is a tuple of (input, expected_result)
+    test_cases = [('HeLlO wOrld', 'hello world'),
+                  ('hi', 'hi'),
+                  ('123 ([?', '123 ([?'),
+                  ('', '')]
+
+    for string, expected in test_cases:
+        # When
+        output = string.lower()
+        # Then
+        assert output == expected
+
+
+def test_var_deterministic():
+    x = numpy.array([-2.0, 2.0])
+    expected = 4.0
+    assert isclose(numpy.var(x), expected)
+
+
+def test_var_fuzzing():
+    rand_state = numpy.random.RandomState(8393)
+
+    N, D = 100000, 5
+    # Goal variances: [0.1 ,  0.45,  0.8 ,  1.15,  1.5]
+    expected = numpy.linspace(0.1, 1.5, D)
+
+    # Generate random, D-dimensional data
+    x = rand_state.randn(N, D) * numpy.sqrt(expected)
+    variance = numpy.var(x, axis=0)
+    numpy.testing.assert_allclose(variance, expected, rtol=1e-2)
