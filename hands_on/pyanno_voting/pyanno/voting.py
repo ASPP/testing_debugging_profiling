@@ -6,7 +6,6 @@
 """Utility functions."""
 
 import numpy as np
-from numpy import log
 
 
 #: In annotations arrays, this is the value used to indicate missing values
