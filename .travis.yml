@@ -1,0 +1,5 @@
+language: python
+python:
+  - "3.5"
+  - "3.6"
+script: pytest hands_on/pyanno_voting
