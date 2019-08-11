@@ -1,0 +1,8 @@
+[
+  "test_counting.py::test_count_no_object",
+  "test_counting.py::test_count_1_object",
+  "test_counting.py::test_count_objects_2_objects",
+  "test_counting.py::test_count_1_object_rectangle",
+  "test_counting.py::test_count_1_object_irregular",
+  "test_counting.py::test_count_all_ones"
+]
