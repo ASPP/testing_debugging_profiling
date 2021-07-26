@@ -15,7 +15,8 @@ jobs:
         python-version: 3.9
     - name: Install dependencies
       run:
-        python -m pip install pytest
+        python -m pip install pytest numpy
     - name: Test with pytest
       run:
         pytest -sv hands_on/pyanno_voting
+
