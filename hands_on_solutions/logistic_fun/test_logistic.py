@@ -35,15 +35,15 @@ def test_convergence(x0):
 # -inf for different starting values.
 # Exercise 3.2: expand your test to use numerical fuzzing to pick an arbitrary
 # value of r > 4.
-
-@pytest.mark.parametrize("x0", [0.1, 0.5,0.9])
+#@pytest.mark.parametrize("n", range(10))
+@pytest.mark.parametrize("x0", [0.1, 0.5,0.8])
 def test_divergence(x0):
     """
     Checks that for values of r > 4, given different initial values x0, all
     diverge to infinity after 1000 iterations.
     """
-    rand_state = np.random.RandomState(8393)
-    r = rand_state.uniform(low=4, high=15)
+    r = np.random.uniform(low=4, high=15)
+    print(r)
     expected_value = -np.inf
     #r = 5
     l = iterate_f(1000, x0, r)
@@ -55,8 +55,7 @@ def test_divergence(x0):
 # use r=3.8.
 # Exercise 4.2: parametrize your test with some other r values: like 3.001,
 # and 3.453. Your test should fail. Why? Use the plotting function
-# `plot_trajectory` to find out what is going on. Then mark your test as
-# expected to fail.
+# `plot_trajectory` to find out what is going on.
 
 @pytest.mark.xfail
 @pytest.mark.parametrize("r", [3.8, 3.001, 3.453])
@@ -68,6 +67,8 @@ def test_aperiodic(r):
     l = iterate_f(100000, 0.01, r)
     last = l[-101:-1]
     assert len(np.unique(last))==100
+
+# Then mark your test as expected to fail.
 
 # Exercise 5: To test chaotic behavior we will need to be a bit more advanced.
 # Let's test that what we're seeing is actually chaos:
@@ -90,23 +91,24 @@ def test_determinism():
 # Exercise 5.2: for the same r value, test the sensitive dependence on initial
 # conditions, or the butterfly effect. Use the following definition of SDIC.
 
-@pytest.mark.parametrize("i", range(10))
-def test_fuzzy_sdic(i):
+def test_fuzzy_sdic():
     """
-    there is a number delta such that for any x0 there is a y0 that is not more
-    than init_error away from x0, when the initial condition y0 has the property
-    that there is an int n wuch that after n iterations the orbit is more than
-    delta away from the orbit of x0. That is
+    `f` is a function and `x0` and `y0` are two possible seeds.
+    If `f` has SDIC then:
+    there is a number `delta` such that for any `x0` there is a `y0` that is not
+    more than `init_error` away from `x0`, where the initial condition `y0` has
+    the property that there is some integer n such that after n iterations, the
+    orbit is more than `delta` away from the orbit of `x0`. That is
     |xn-yn| > delta
     """
-    rand_state = np.random.RandomState(8393)
-    delta = rand_state.rand()
-    x0 = rand_state.rand()
-    init_error = rand_state.rand()
-    y0max = x0 + init_error
-    n = 10000
-    l_x = iterate_f(n, x0, 3.8)
-    l_y = iterate_f(n, y0max, 3.8)
-    assert any(abs(l_x - l_y)>delta)
-
-
+    deltas = np.random.rand(100)
+    result_list = []
+    for delta in deltas:
+        x0 = np.random.rand()
+        init_error = np.random.rand()
+        y0max = x0 + init_error
+        n = 10000
+        l_x = iterate_f(n, x0, 3.8)
+        l_y = iterate_f(n, y0max, 3.8)
+        result_list.append(any(abs(l_x - l_y)>delta))
+    assert any(result_list)
