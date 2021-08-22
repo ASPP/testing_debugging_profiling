@@ -41,11 +41,9 @@ tests separately.
 Some r values for `3<r<4` have some interesting properties. A chaotic
 trajectory doesn't diverge but also doesn't converge.
 
-## Visualize the bifurcation diagram
 a) Use the `plot_trajectory` function from the `plot_logfun` module using your
-implementation of `f` and `iterate_f` to look at the bifurcation diagram.
-
-The script generates an output image, `bifurcation_diagram.png`.
+implementation of `f` and `iterate_f` to look at the bifurcation diagram. The
+script generates an output image, `bifurcation_diagram.png`.
 
 b) Write a test that checks for chaotic behavior when r=3.8. Run the
 logistic map for 100000 iterations and verify the conditions for
