@@ -24,4 +24,8 @@ def test_local_maxima_edges():
 
 def test_local_maxima_plateau():
     raise Exception('not yet implemented')
+
+
+def test_local_maxima_not_a_plateau():
+    raise Exception('not yet implemented')
  

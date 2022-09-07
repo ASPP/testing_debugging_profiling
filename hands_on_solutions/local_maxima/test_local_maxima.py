@@ -28,3 +28,9 @@ def test_local_maxima_plateau():
     maxima = local_maxima(values)
     assert maxima == expected
 
+
+def test_local_maxima_not_a_plateau():
+    values = [1, 2, 2, 3, 1]
+    expected = [3]
+    maxima = local_maxima(values)
+    assert maxima == expected
