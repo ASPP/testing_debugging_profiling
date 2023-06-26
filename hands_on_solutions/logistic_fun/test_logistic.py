@@ -49,7 +49,7 @@ def test_chaotic_behavior(random_state):
         assert min(np.abs(np.diff(result[-1000:]))) > 1e-6
 
 
-def test_fuzzy_sdic(random_state):
+def test_sensitivity_to_initial_conditions(random_state):
     """
     `f` is a function and `x0` and `y0` are two possible seeds.
     If `f` has SDIC then:
@@ -59,14 +59,15 @@ def test_fuzzy_sdic(random_state):
     orbit is more than `delta` away from the orbit of `x0`. That is
     |xn-yn| > delta
     """
-    deltas = random_state.rand(100)
+    delta = 0.1
+    n = 10000
+    x0 = random_state.rand()
+    x0_diffs = random_state.rand(100) * 0.001 - 0.0005
+
     result_list = []
-    for delta in deltas:
-        x0 = random_state.rand()
-        init_error = random_state.rand()
-        y0max = x0 + init_error
-        n = 10000
+    for x0_diff in x0_diffs:
+        x1 = x0 + x0_diff
         l_x = iterate_f(n, x0, 3.8)
-        l_y = iterate_f(n, y0max, 3.8)
+        l_y = iterate_f(n, x1, 3.8)
         result_list.append(any(abs(l_x - l_y)>delta))
     assert any(result_list)
