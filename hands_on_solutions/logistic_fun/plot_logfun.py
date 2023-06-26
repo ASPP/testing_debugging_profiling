@@ -1,7 +1,14 @@
+"""Usage:
+```
+plot_trajectory(100, 3.6, 0.1)
+plot_bifurcation(2.5, 4.2, 0.001)
+```
+"""
 import numpy as np
 from matplotlib import pyplot as plt
 
 from logistic import iterate_f
+
 
 def plot_trajectory(n, r, x0, fname="single_trajectory.png"):
     """
@@ -17,7 +24,7 @@ def plot_trajectory(n, r, x0, fname="single_trajectory.png"):
         fig, ax (matplotlib objects)
     """
     l = iterate_f(n, x0, r)
-    fig, ax = plt.subplots(figsize=(10,5))
+    fig, ax = plt.subplots(figsize=(10, 5))
     ax.plot(list(range(n)), l)
     fig.suptitle('Logistic Function')
 
@@ -29,10 +36,10 @@ def plot_bifurcation(start, end, step, fname="bifurcation.png", it=100000,
                      last=300):
     """
     Saves a plot of the bifurcation diagram of the logistic function. The
-    `start`, `end`, and `step` parameters define for which r values to calculate
-    the logistic function. If you space them too closely, it might take a very
-    long time, if you dont plot enough, your bifurcation diagram won't be
-    informative. Choose wisely!
+    `start`, `end`, and `step` parameters define for which r values to
+    calculate the logistic function. If you space them too closely, it might
+    take a very long time, if you dont plot enough, your bifurcation diagram
+    won't be informative. Choose wisely!
 
     inputs
         start, end, step:  float (which r values to calculate the logistic
@@ -45,24 +52,19 @@ def plot_bifurcation(start, end, step, fname="bifurcation.png", it=100000,
     returns
         fig, ax (matplotlib objects)
     """
-    r_range=np.arange(start, end, step)
-    x=[]
-    y=[]
+    r_range = np.arange(start, end, step)
+    x = []
+    y = []
 
     for r in r_range:
         l = iterate_f(it, 0.1, r)
-        ll = l[len(l)-last::].copy()
+        ll = l[len(l) - last::].copy()
         lll = np.unique(ll)
         y.extend(lll)
-        x.extend(np.ones(len(lll))*r)
+        x.extend(np.ones(len(lll)) * r)
 
-    fig, ax = plt.subplots(figsize=(20,10))
+    fig, ax = plt.subplots(figsize=(20, 10))
     ax.scatter(x, y, s=0.1, color='k')
     ax.set_xlabel("r")
     fig.savefig(fname)
     return fig, ax
-
-
-if __name__=="__main__":
-    plot_trajectory(100, 3.6, 0.1)
-    plot_bifurcation(2.5, 4.2, 0.001)

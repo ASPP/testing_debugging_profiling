@@ -4,6 +4,25 @@ import pytest
 
 from logistic import f, iterate_f
 
+# set the random seed for once here
+SEED = np.random.randint(0, 2**31)
+
+
+@pytest.fixture
+def random_state():
+    print(f'Using seed {SEED}')
+    random_state = np.random.RandomState(SEED)
+    return random_state
+
+
+
+@pytest.mark.parametrize('a', [1, 2, 3])
+@pytest.mark.parametrize('b', [5, 6, 7])
+def test_addition_increases(a, b):
+    print(a, b)
+    assert b + a > a
+
+
 
 @pytest.mark.parametrize(
     'x, r, expected',
@@ -40,17 +59,17 @@ def test_attractor_converges():
         result = iterate_f(100, x, 1.5)
         assert_allclose(result[-1], 1 / 3)
 
-
-
 ####################################################################
 # These only work after adding the fixture
 ####################################################################
+
+
 @pytest.mark.xfail
-def test_attractor_converges(random_state):
+def test_attractor_converges2(random_state):
     for _ in range(100):
         x = random_state.uniform(0, 1)
         result = iterate_f(100, x, 1.5)
-        assert_allclose(result[-1], 1/3)
+        assert_allclose(result[-1], 1 / 3)
 
 
 @pytest.mark.xfail
@@ -63,15 +82,16 @@ def test_chaotic_behavior(random_state):
         assert np.all(result <= 1.0)
         assert min(np.abs(np.diff(result[-1000:]))) > 1e-6
 
+
 @pytest.mark.xfail
 def test_sensitivity_to_initial_conditions(random_state):
     """
     `f` is a function and `x0` and `y0` are two possible seeds.
     If `f` has SDIC then:
-    there is a number `delta` such that for any `x0` there is a `y0` that is not
-    more than `init_error` away from `x0`, where the initial condition `y0` has
-    the property that there is some integer n such that after n iterations, the
-    orbit is more than `delta` away from the orbit of `x0`. That is
+    there is a number `delta` such that for any `x0` there is a `y0` that is
+    not more than `init_error` away from `x0`, where the initial condition `y0`
+    has the property that there is some integer n such that after n iterations,
+    the orbit is more than `delta` away from the orbit of `x0`. That is
     |xn-yn| > delta
     """
     delta = 0.1
@@ -84,5 +104,5 @@ def test_sensitivity_to_initial_conditions(random_state):
         x1 = x0 + x0_diff
         l_x = iterate_f(n, x0, 3.8)
         l_y = iterate_f(n, x1, 3.8)
-        result_list.append(any(abs(l_x - l_y)>delta))
+        result_list.append(any(abs(l_x - l_y) > delta))
     assert any(result_list)

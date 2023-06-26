@@ -19,8 +19,8 @@ iterations, each time passing the result back into f.
 Use `@parametrize` to test the function for the following cases:
 ```
   x=0.1, r=2.2, it=1 => iterate_f(it, x, r)=[0.198]
-  x=0.2, r=3.4, it=4 => iterate_f(it, x, r)=[0.544, 0.843418, 0.449019, 0.841163]
-  x=0.75, r=1.7, it=2 => iterate_f(it, x, r)=[0.31875, 0.369152]
+  x=0.2, r=3.4, it=4 => f(x, r)=[0.544, 0.843418, 0.449019, 0.841163]
+  x=0.75, r=1.7, it=2 => f(x, r)=[0.31875, 0.369152]
 ```
 
 c) Import and call the `plot_trajectory` function from the `plot_logfun`
@@ -32,8 +32,8 @@ Try with values `r<3`, `r>4` and `3<r<4` to get a feeling for how the function
 behaves differently with different parameters. Note that your input x0 should
 be between 0 and 1.
 
-## Exercise 2 -- Check the convergence of an attractor using randomi testing
-a) Write a randomized test that checks that, for `r=1.5`, all
+## Exercise 2 -- Check the convergence of an attractor using fuzzing
+a) Write a numerical fuzzing test that checks that, for `r=1.5`, all
 starting points converge to the attractor `f(x, r) = 1/3`.
 
 b) Use `pytest.mark` to mark the tests from the previous exercise with one mark
