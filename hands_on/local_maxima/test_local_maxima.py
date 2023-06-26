@@ -28,4 +28,3 @@ def test_local_maxima_plateau():
 
 def test_local_maxima_not_a_plateau():
     raise Exception('not yet implemented')
- 
