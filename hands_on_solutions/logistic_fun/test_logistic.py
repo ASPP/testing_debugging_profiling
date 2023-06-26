@@ -31,6 +31,21 @@ def test_iterate_f(x, r, it, expected):
     assert_allclose(result, expected, rtol=1e-5)
 
 
+def test_attractor_converges():
+    SEED = 42
+    random_state = np.random.RandomState(SEED)
+
+    for _ in range(100):
+        x = random_state.uniform(0, 1)
+        result = iterate_f(100, x, 1.5)
+        assert_allclose(result[-1], 1 / 3)
+
+
+
+####################################################################
+# These only work after adding the fixture
+####################################################################
+@pytest.mark.xfail
 def test_attractor_converges(random_state):
     for _ in range(100):
         x = random_state.uniform(0, 1)
@@ -38,7 +53,7 @@ def test_attractor_converges(random_state):
         assert_allclose(result[-1], 1/3)
 
 
-
+@pytest.mark.xfail
 def test_chaotic_behavior(random_state):
     r = 3.8
     for _ in range(10):
@@ -48,7 +63,7 @@ def test_chaotic_behavior(random_state):
         assert np.all(result <= 1.0)
         assert min(np.abs(np.diff(result[-1000:]))) > 1e-6
 
-
+@pytest.mark.xfail
 def test_sensitivity_to_initial_conditions(random_state):
     """
     `f` is a function and `x0` and `y0` are two possible seeds.
