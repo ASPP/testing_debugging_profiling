@@ -1,4 +1,4 @@
-def local_maxima(x):
+def find_maxima(x):
     """Find local maxima of x.
 
     Input arguments:
