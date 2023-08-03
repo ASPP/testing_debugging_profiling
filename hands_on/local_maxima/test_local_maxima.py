@@ -1,30 +1,30 @@
-from local_maxima import local_maxima
+from local_maxima import find_maxima
 
 
-def test_local_maxima():
+def test_find_maxima():
     values = [1, 3, -2, 0, 2, 1]
     expected = [1, 4]
-    maxima = local_maxima(values)
+    maxima = find_maxima(values)
     assert maxima == expected
 
 
-def test_local_maxima_negative():
-    values = [-1, -1, 0, -1]
-    expected = [2]
-    maxima = local_maxima(values)
-    assert maxima == expected
-
-
-def test_local_maxima_edges():
+def test_find_maxima_edges():
     values = [4, 2, 1, 3, 1, 5]
     expected = [0, 3, 5]
-    maxima = local_maxima(values)
+    maxima = find_maxima(values)
     assert maxima == expected
 
 
-def test_local_maxima_plateau():
+def test_find_maxima_empty():
+    values = []
+    expected = []
+    maxima = find_maxima(values)
+    assert maxima == expected
+
+
+def test_find_maxima_plateau():
     raise Exception('not yet implemented')
 
 
-def test_local_maxima_not_a_plateau():
+def test_find_maxima_not_a_plateau():
     raise Exception('not yet implemented')
