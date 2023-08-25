@@ -59,3 +59,12 @@ target/
 
 #macos stuff
 .DS_Store
+
+# PyCharm
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# general
+_archive/
