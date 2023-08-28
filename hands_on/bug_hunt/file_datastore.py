@@ -49,7 +49,6 @@ class FileDatastore:
         bytes
             The sequence of bytes read from `path`.
         """
-        path = os.path.join(self.base_path, path)
         with self.open(path, 'rb') as f:
             data = f.read()
         return data
