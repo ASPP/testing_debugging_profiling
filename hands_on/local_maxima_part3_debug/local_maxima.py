@@ -14,12 +14,8 @@ def find_maxima(x):
     if len_x == 0:
         return maxima
 
-    # Check first element
-    if x[0] > x[1]:
-        maxima.append(0)
-    # Check last element
-    if x[-1] > x[-2]:
-        maxima.append(len_x - 1)
+    maxima = check_first_element(x, maxima)
+    maxima = check_last_element(x, maxima)
 
     # Check numbers in between
     i = 1
@@ -33,6 +29,18 @@ def find_maxima(x):
             if x[plateau_end] > x[plateau_end + 1]:
                 maxima.append(plateau_start)
         i += 1
+    return maxima
+
+
+def check_first_element(x, maxima):
+    if x[0] > x[1]:
+        maxima.append(0)
+    return maxima
+
+
+def check_last_element(x, maxima):
+    if x[-1] > x[-2]:
+        maxima.append(len(x) - 1)
     return maxima
 
 

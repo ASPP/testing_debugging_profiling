@@ -25,10 +25,7 @@ def find_maxima(x):
     if np.all([item == x[0] for item in x]):
         return [0]
 
-    # Check first element
-    if x[0] > x[1]:
-        maxima.append(0)
-
+    maxima = check_first_element(x, maxima)
     # Check numbers in between
     i = 1
     while i < len_x - 1:
@@ -46,13 +43,21 @@ def find_maxima(x):
                 maxima.append((plateau_end + plateau_start) // 2)
             elif x[plateau_end] > x[plateau_end + 1]:
                 maxima.append((plateau_end + plateau_start) // 2)
-
         i += 1
+    maxima = check_last_element(x, maxima)
 
-    # Check last element
+    return maxima
+
+
+def check_first_element(x, maxima):
+    if x[0] > x[1]:
+        maxima.append(0)
+    return maxima
+
+
+def check_last_element(x, maxima):
     if x[-1] > x[-2]:
-        maxima.append(len_x - 1)
-
+        maxima.append(len(x) - 1)
     return maxima
 
 
