@@ -43,6 +43,7 @@ def test_find_maxima_not_a_plateau():
 
 
 def test_find_maxima_correct_order():
+    # TASK: get this test to pass
     values = [2, 1, 5, 1, 9]
     expected = [0, 2, 4]
     maxima = find_maxima(values)
@@ -50,6 +51,7 @@ def test_find_maxima_correct_order():
 
 
 def test_find_maxima_one_value():
+    # TASK: get this test to pass
     values = [1]
     expected = [0]
     maxima = find_maxima(values)
@@ -57,7 +59,9 @@ def test_find_maxima_one_value():
 
 
 def test_find_maxima_long_plateau():
-    # Change find_maxima so that it returns the middle index of the plateau indices
+    # TASK: Change the implementation for when there is a plateau
+    # for uneven plateau length, return the middle index, e.g. [1, 2, *2*, 2, 1] --> [2]
+    # for even plateau length, return the index left of the middle  e.g. [1, 2, *2*, 2, 2, 1] --> [2]
     values = [1, 2, 2, 2, 2, 2, 1, 8, 0]
     expected = [3, 7]
     maxima = find_maxima(values)
@@ -65,6 +69,7 @@ def test_find_maxima_long_plateau():
 
 
 def test_find_maxima_plateau_at_end():
+    # TASK: make sure plateaus at the end are handled properly (see test above)
     values = [1, 2, 2]
     expected = [1]
     maxima = find_maxima(values)
@@ -72,6 +77,7 @@ def test_find_maxima_plateau_at_end():
 
 
 def test_find_maxima_plateau_at_start():
+    # TASK: make sure plateaus at the start are handled properly (see test above)
     values = [1, 1, 0, 0]
     expected = [0]
     maxima = find_maxima(values)
@@ -79,6 +85,7 @@ def test_find_maxima_plateau_at_start():
 
 
 def test_find_maxima_all_same_values():
+    # TASK: implement a check for lists where there is no local maximum
     values = [1, 1]
     expected = [0]
     maxima = find_maxima(values)
