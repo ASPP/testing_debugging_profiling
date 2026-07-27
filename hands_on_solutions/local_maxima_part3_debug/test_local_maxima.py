@@ -46,11 +46,10 @@ def test_find_maxima_plateau_at_end():
     assert maxima == expected
 
 
-# the tests below here fail, can you get them to pass?
+# these are the new tests
 
 
 def test_find_maxima_one_value():
-    # TASK: get this test to pass
     values = [1]
     expected = [0]
     maxima = find_maxima(values)
@@ -58,7 +57,6 @@ def test_find_maxima_one_value():
 
 
 def test_find_maxima_plateau_at_start():
-    # TASK: make sure plateaus at the start are handled properly (see test above)
     values = [2, 2, 1, 0]
     expected = [0]
     maxima = find_maxima(values)

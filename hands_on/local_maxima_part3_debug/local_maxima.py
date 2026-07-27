@@ -26,7 +26,7 @@ def find_maxima(x):
             while i < len_x - 1 and x[i] == x[i + 1]:
                 i += 1
             plateau_end = i
-            if x[plateau_end] > x[plateau_end + 1]:
+            if i == len_x - 1 or x[plateau_end] > x[plateau_end + 1]:
                 maxima.append(plateau_start)
         i += 1
     return maxima
@@ -45,5 +45,7 @@ def check_last_element(x, maxima):
 
 
 if __name__ == "__main__":
-    result = find_maxima([1, 2, 2, 1])
-    print(result)
+    numbers = [1, 2, 2, 1]
+    print('Input:', numbers)
+    result = find_maxima(numbers)
+    print('Indices of local maxima:', result)
