@@ -27,3 +27,18 @@ def test_logistic_fit_randomized():
         xs = iterate_f(it=17, x0=x0, r=r)
 
         assert_allclose(r, fit_r(xs), atol=1e-3)
+
+
+
+# def test_logistic_fit_randomized_conftest(random_state):
+#     # We test for 100 random values of x0 and r, to make sure that the function works in general.
+#     for _ in range(10):
+#         x0 = random_state.uniform(0.0001, 0.9999)
+#         # Round `r` to 1/1000 to make sure that it matches the precision of the fit_r function,
+#         # so that r can be exactly recovered.
+#         r = round(random_state.uniform(0.001, 3.999), 3)
+#         xs = iterate_f(it=17, x0=x0, r=r)
+
+#         assert_allclose(r, fit_r(xs), atol=1e-3)
+
+

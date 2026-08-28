@@ -29,3 +29,11 @@ def test_f_corner_cases():
 # x=0.1, r=2.2, it=1 => iterate_f(it, x, r)=[0.1, 0.198]
 # x=0.2, r=3.4, it=4 => iterate_f(it, x, r)=[0.2, 0.544, 0.843418, 0.449019, 0.841163]
 # x=0.5, r=2, it=3 => iterate_f(it, x, r)=[0.5, 0.5, 0.5, 0.5]
+
+# Hands on 4 + 5
+# do it in new test_logistic_fit.py test file
+
+# Hands on 6
+# Write a test that checks for chaotic behavior when r=3.8. Run the logistic
+# map for 100’000 iterations and verify that the trajectory is between 0 and 1
+# and Then, check that the last 100 iterations are not all the same value.
